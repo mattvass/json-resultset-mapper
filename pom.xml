@@ -9,8 +9,30 @@
 	<packaging>jar</packaging>
 	<description>This allows users to simply convert their result set to json.</description>
 
-	<name>resultsetmapper</name>
+	<name>${project.groupId}:${project.artifactId}</name>
 	<url>http://maven.apache.org</url>
+
+	<developers>
+		<developer>
+			<name>Matthew Vass</name>
+			<email>matthew.vass@outlook.com</email>
+			<organization>N/A</organization>
+			<organizationUrl>N/A</organizationUrl>
+		</developer>
+	</developers>
+
+	<licenses>
+		<license>
+			<name>The Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+
+	<scm>
+		<connection>scm:git:git://github.com/mattvass/json-resultset-mapper.git</connection>
+		<developerConnection>scm:git:ssh://github.com/mattvass/json-resultset-mapper.git</developerConnection>
+		<url>https://github.com/mattvass/json-resultset-mapper/tree/master</url>
+	</scm>
 
 	<properties>
 		<maven.compiler.source>1.8</maven.compiler.source>

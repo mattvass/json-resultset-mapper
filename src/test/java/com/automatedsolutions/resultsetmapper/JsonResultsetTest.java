@@ -17,7 +17,10 @@ import static com.automatedsolutions.resultsetmapper.common.TestColumnNames.*;
 
 import static org.mockito.Mockito.*;
 
+/** @author Matthew Vass */
 public class JsonResultsetTest extends BaseTestHelper {
+
+  private static final String NULL = "null";
 
   @Mock private ResultSet results;
 
@@ -126,5 +129,25 @@ public class JsonResultsetTest extends BaseTestHelper {
         json.getJsonArray(JsonBuilderConstants.JSON_RESULTS_KEY)
             .getJsonObject(0)
             .containsKey(INTEGER_COLUMN));
+  }
+
+  @Test
+  public void toJsonNullObject() throws SQLException {
+    when(results.getMetaData()).thenReturn(meta);
+    when(meta.getColumnCount()).thenReturn(1);
+
+    doReturn(true).doReturn(false).when(results).next();
+
+    when(meta.getColumnName(1)).thenReturn(DATE_COLUMN);
+    when(meta.getColumnClassName(1)).thenReturn(DATE_VALUE.getClass().getTypeName());
+    when(results.getObject(DATE_COLUMN)).thenReturn(null);
+
+    JsonObject json = jsonResultSet.toJson(results);
+
+    Assert.assertEquals(
+        NULL,
+        json.getJsonArray(JsonBuilderConstants.JSON_RESULTS_KEY)
+            .getJsonObject(0)
+            .getString(DATE_COLUMN));
   }
 }

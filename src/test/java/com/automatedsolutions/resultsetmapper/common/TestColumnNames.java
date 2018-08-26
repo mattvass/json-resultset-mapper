@@ -1,5 +1,6 @@
 package com.automatedsolutions.resultsetmapper.common;
 
+/** @author Matthew Vass */
 public class TestColumnNames {
 
   public static final String STRING_COLUMN = "stringColumn";

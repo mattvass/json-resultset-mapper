@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
 
+/** @author Matthew Vass */
 public class TestResultSetData {
   public static final String STRING_VALUE = "string value";
 

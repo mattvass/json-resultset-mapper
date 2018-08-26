@@ -12,14 +12,54 @@ import javax.json.JsonObjectBuilder;
 import org.apache.commons.text.WordUtils;
 import com.automatedsolutions.resultsetmapper.constants.JsonBuilderConstants;
 
+/** @author Matthew Vass */
 public class JsonResultSet {
 
   private boolean isNormalized;
 
+  /**
+   * Converts the java.sql.ResultSet to a JsonObject using the column names as its keys. Values
+   * returned can be null if no value is in the ResultSet for that column.
+   *
+   * <pre>
+   * <code>
+   * {
+   * "results": [{
+   * "string_column": "string value",
+   * "integer_column": 39
+   * }]
+   * }
+   * </code>
+   * </pre>
+   *
+   * @param resultSet
+   * @return JsonObject
+   * @throws SQLException
+   */
   public JsonObject toJson(ResultSet resultSet) throws SQLException {
     return toJson(resultSet, false);
   }
 
+  /**
+   * * Converts the java.sql.ResultSet to a JsonObject using normalized column names as its keys.
+   * Values returned can be null if no value is in the ResultSet for that column.
+   *
+   * <pre>
+   * <code>
+   * {
+   * "results": [{
+   * "stringColumn": "string value",
+   * "integerColumn": 39
+   * }]
+   * }
+   * </code>
+   * </pre>
+   *
+   * @param resultSet
+   * @param normalizeColumnNames
+   * @return JsonObject
+   * @throws SQLException
+   */
   public JsonObject toJson(ResultSet resultSet, boolean normalizeColumnNames) throws SQLException {
 
     this.isNormalized = normalizeColumnNames;
@@ -55,7 +95,10 @@ public class JsonResultSet {
         } else if (type.equals(Boolean.class.getTypeName())) {
           jsonResults.add(getColumnName(column), (Boolean) resultSet.getObject(column));
         } else {
-          jsonResults.add(getColumnName(column), String.valueOf(resultSet.getObject(column)));
+          Object value = resultSet.getObject(column);
+          jsonResults.add(
+              getColumnName(column),
+              (value != null ? String.valueOf(resultSet.getObject(column)) : "null"));
         }
       }
       jsonArray.add(jsonResults.build());
@@ -63,7 +106,12 @@ public class JsonResultSet {
 
     return jsonParent.add(JsonBuilderConstants.JSON_RESULTS_KEY, jsonArray.build()).build();
   }
-
+  /**
+   * This will return the column name or a normalized version of the column name.
+   *
+   * @param column
+   * @return column name
+   */
   private String getColumnName(String column) {
     if (isNormalized) {
       column = column.replaceAll("[^A-Za-z0-9]", " ");
