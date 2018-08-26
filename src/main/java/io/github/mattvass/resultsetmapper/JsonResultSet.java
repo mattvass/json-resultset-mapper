@@ -1,4 +1,4 @@
-package com.automatedsolutions.resultsetmapper;
+package io.github.mattvass.resultsetmapper;
 
 import java.math.BigDecimal;
 import java.sql.ResultSet;
@@ -10,7 +10,7 @@ import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 import org.apache.commons.text.WordUtils;
-import com.automatedsolutions.resultsetmapper.constants.JsonBuilderConstants;
+import io.github.mattvass.resultsetmapper.constants.JsonBuilderConstants;
 
 /** @author Matthew Vass */
 public class JsonResultSet {

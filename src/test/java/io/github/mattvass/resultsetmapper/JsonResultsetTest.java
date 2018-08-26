@@ -1,4 +1,4 @@
-package com.automatedsolutions.resultsetmapper;
+package io.github.mattvass.resultsetmapper;
 
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -9,12 +9,11 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-
-import com.automatedsolutions.resultsetmapper.common.BaseTestHelper;
-import com.automatedsolutions.resultsetmapper.constants.JsonBuilderConstants;
-import static com.automatedsolutions.resultsetmapper.common.TestResultSetData.*;
-import static com.automatedsolutions.resultsetmapper.common.TestColumnNames.*;
-
+import io.github.mattvass.resultsetmapper.JsonResultSet;
+import io.github.mattvass.resultsetmapper.common.BaseTestHelper;
+import io.github.mattvass.resultsetmapper.constants.JsonBuilderConstants;
+import static io.github.mattvass.resultsetmapper.common.TestColumnNames.*;
+import static io.github.mattvass.resultsetmapper.common.TestResultSetData.*;
 import static org.mockito.Mockito.*;
 
 /** @author Matthew Vass */

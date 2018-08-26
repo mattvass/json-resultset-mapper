@@ -1,4 +1,4 @@
-package com.automatedsolutions.resultsetmapper.common;
+package io.github.mattvass.resultsetmapper.common;
 
 import org.junit.Before;
 import org.junit.runner.RunWith;

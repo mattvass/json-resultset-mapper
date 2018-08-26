@@ -1,4 +1,4 @@
-package com.automatedsolutions.resultsetmapper.common;
+package io.github.mattvass.resultsetmapper.common;
 
 /** @author Matthew Vass */
 public class TestColumnNames {

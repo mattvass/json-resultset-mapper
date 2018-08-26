@@ -157,7 +157,7 @@
 				<version>${jacoco.maven.version}</version>
 				<configuration>
 					<excludes>
-						<exclude>com/automatedsolutions/resultsetmapper/constants/**/*</exclude>
+						<exclude>io/github/mattvass/resultsetmapper/constants/**/*</exclude>
 					</excludes>
 				</configuration>
 				<executions>

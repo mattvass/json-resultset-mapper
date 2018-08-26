@@ -1,4 +1,4 @@
-package com.automatedsolutions.resultsetmapper.common;
+package io.github.mattvass.resultsetmapper.common;
 
 import java.math.BigDecimal;
 import java.sql.Date;

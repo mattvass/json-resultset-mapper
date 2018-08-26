@@ -1,4 +1,4 @@
-package com.automatedsolutions.resultsetmapper.constants;
+package io.github.mattvass.resultsetmapper.constants;
 
 /** @author Matthew Vass */
 public class JsonBuilderConstants {
