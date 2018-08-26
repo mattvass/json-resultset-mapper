@@ -11,9 +11,9 @@ The following types will be cast to the appropriate type:
 - Boolean
 - Short
 
-Currently all other values are converted to strings values or null.
+Currently all other values are converted to strings values or JsonValue.NULL if the returned value is null.
 
-For any result set that returns primitive types, getObject is used instead and it's properly cast to it's non-primitive type.
+The *java.sql.ResultSet.getObject* method is used to ensure no primitive types are set. Due to methods like *getBoolean* or *getDouble* returning primitive values which have defaults. The *getObject* method seemed like the logical choice to ensure we are not setting any default values that weren't expected by the end user.
 
 **Simple Implementation**
 ```
