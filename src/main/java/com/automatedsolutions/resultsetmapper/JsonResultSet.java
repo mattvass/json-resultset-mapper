@@ -81,24 +81,28 @@ public class JsonResultSet {
       for (int i = 1; i <= colCount; i++) {
         String column = meta.getColumnName(i);
         String type = meta.getColumnClassName(i);
+        Object value = resultSet.getObject(column);
 
-        if (type.equals(String.class.getTypeName())) {
-          jsonResults.add(getColumnName(column), resultSet.getString(column));
-        } else if (type.equals(Integer.class.getTypeName())) {
-          jsonResults.add(getColumnName(column), (Integer) resultSet.getObject(column));
-        } else if (type.equals(BigDecimal.class.getTypeName())) {
-          jsonResults.add(getColumnName(column), resultSet.getBigDecimal(column));
-        } else if (type.equals(Long.class.getTypeName())) {
-          jsonResults.add(getColumnName(column), (Long) resultSet.getObject(column));
-        } else if (type.equals(Double.class.getTypeName())) {
-          jsonResults.add(getColumnName(column), (Double) resultSet.getObject(column));
-        } else if (type.equals(Boolean.class.getTypeName())) {
-          jsonResults.add(getColumnName(column), (Boolean) resultSet.getObject(column));
+        if (value != null) {
+          if (type.equals(String.class.getTypeName())) {
+            jsonResults.add(getColumnName(column), (String) value);
+          } else if (type.equals(Integer.class.getTypeName())) {
+            jsonResults.add(getColumnName(column), (Integer) value);
+          } else if (type.equals(BigDecimal.class.getTypeName())) {
+            jsonResults.add(getColumnName(column), (BigDecimal) value);
+          } else if (type.equals(Long.class.getTypeName())) {
+            jsonResults.add(getColumnName(column), (Long) value);
+          } else if (type.equals(Double.class.getTypeName())) {
+            jsonResults.add(getColumnName(column), (Double) value);
+          } else if (type.equals(Boolean.class.getTypeName())) {
+            jsonResults.add(getColumnName(column), (Boolean) value);
+          } else if (type.equals(Short.class.getTypeName())) {
+            jsonResults.add(getColumnName(column), (Short) value);
+          } else {
+            jsonResults.add(getColumnName(column), String.valueOf(value));
+          }
         } else {
-          Object value = resultSet.getObject(column);
-          jsonResults.add(
-              getColumnName(column),
-              (value != null ? String.valueOf(resultSet.getObject(column)) : "null"));
+          jsonResults.addNull(column);
         }
       }
       jsonArray.add(jsonResults.build());

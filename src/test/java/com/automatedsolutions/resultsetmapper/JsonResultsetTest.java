@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import javax.json.JsonObject;
-
+import javax.json.JsonValue;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -19,8 +19,6 @@ import static org.mockito.Mockito.*;
 
 /** @author Matthew Vass */
 public class JsonResultsetTest extends BaseTestHelper {
-
-  private static final String NULL = "null";
 
   @Mock private ResultSet results;
 
@@ -38,7 +36,7 @@ public class JsonResultsetTest extends BaseTestHelper {
 
     when(meta.getColumnName(1)).thenReturn(STRING_COLUMN);
     when(meta.getColumnClassName(1)).thenReturn(STRING_VALUE.getClass().getTypeName());
-    when(results.getString(STRING_COLUMN)).thenReturn(STRING_VALUE);
+    when(results.getObject(STRING_COLUMN)).thenReturn(STRING_VALUE);
 
     when(meta.getColumnName(2)).thenReturn(INTEGER_COLUMN);
     when(meta.getColumnClassName(2)).thenReturn(INTEGER_VALUE.getClass().getTypeName());
@@ -54,7 +52,7 @@ public class JsonResultsetTest extends BaseTestHelper {
 
     when(meta.getColumnName(5)).thenReturn(BIGDECIMAL_COLUMN);
     when(meta.getColumnClassName(5)).thenReturn(BIGDECIMAL_VALUE.getClass().getTypeName());
-    when(results.getBigDecimal(BIGDECIMAL_COLUMN)).thenReturn(BIGDECIMAL_VALUE);
+    when(results.getObject(BIGDECIMAL_COLUMN)).thenReturn(BIGDECIMAL_VALUE);
 
     when(meta.getColumnName(6)).thenReturn(SHORT_COLUMN);
     when(meta.getColumnClassName(6)).thenReturn(SHORT_VALUE.getClass().getTypeName());
@@ -104,7 +102,7 @@ public class JsonResultsetTest extends BaseTestHelper {
 
     when(meta.getColumnName(1)).thenReturn(STRING_UNDERSCORE_COLUMN);
     when(meta.getColumnClassName(1)).thenReturn(STRING_VALUE.getClass().getTypeName());
-    when(results.getString(STRING_UNDERSCORE_COLUMN)).thenReturn(STRING_VALUE);
+    when(results.getObject(STRING_UNDERSCORE_COLUMN)).thenReturn(STRING_VALUE);
 
     when(meta.getColumnName(2)).thenReturn(INTEGER_HYPHEN_COLUMN);
     when(meta.getColumnClassName(2)).thenReturn(INTEGER_VALUE.getClass().getTypeName());
@@ -145,9 +143,7 @@ public class JsonResultsetTest extends BaseTestHelper {
     JsonObject json = jsonResultSet.toJson(results);
 
     Assert.assertEquals(
-        NULL,
-        json.getJsonArray(JsonBuilderConstants.JSON_RESULTS_KEY)
-            .getJsonObject(0)
-            .getString(DATE_COLUMN));
+        JsonValue.NULL,
+        json.getJsonArray(JsonBuilderConstants.JSON_RESULTS_KEY).getJsonObject(0).get(DATE_COLUMN));
   }
 }
