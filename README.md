@@ -9,7 +9,7 @@ The following types will be cast to the appropriate type:
 - Long
 - Double
 - Boolean
-- Short ( converted to int value if not null otherwise null is returned )
+- Short
 
 Currently all other values are converted to strings values or null.
 
@@ -18,4 +18,32 @@ For any result set that returns primitive types, getObject is used instead and i
 **Simple Implementation**
 ```
 new JsonResultSet().toJson(resultSet);
+```
+#### Example Json Output
+```
+{
+	"results": [{
+		"stringColumn": "string value",
+		"integerColumn": 39,
+		"booleanColumn": true,
+		"doubleColumn": 150000.0,
+		"bigdecimalColumn": 10,
+		"shortColumn": 123,
+		"longColumn": 12345678910,
+		"timeColumn": "10:11:12",
+		"timestampColumn": "1970-05-23 17:21:18.91",
+		"dateColumn": "1970-05-23"
+	}, {
+		"stringColumn": "string value",
+		"integerColumn": 39,
+		"booleanColumn": true,
+		"doubleColumn": 150000.0,
+		"bigdecimalColumn": 10,
+		"shortColumn": 123,
+		"longColumn": 12345678910,
+		"timeColumn": "10:11:12",
+		"timestampColumn": "1970-05-23 17:21:18.91",
+		"dateColumn": "1970-05-23"
+	}]
+}
 ```
