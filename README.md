@@ -19,6 +19,15 @@ Currently all other values are converted to strings values or JsonValue.NULL if 
 
 The **java.sql.ResultSet.getObject** method is used to ensure no primitive types are set, due to methods like **getBoolean** or **getDouble** returning primitive values which have defaults. The **getObject** method seemed like the logical choice to ensure we are not setting any default values that weren't expected by the end user.
 
+#### Add as a dependency
+```
+<dependency>
+  <groupId>io.github.mattvass</groupId>
+  <artifactId>json-resultset-mapper</artifactId>
+  <version>see-version-number-above</version>
+</dependency>
+```
+
 **Simple Implementation**
 ```
 new JsonResultSet().toJson(resultSet);
