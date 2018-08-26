@@ -32,9 +32,9 @@ public class JsonResultSet {
    * </code>
    * </pre>
    *
-   * @param resultSet
+   * @param resultSet The java.sql.ResultSet you want to convert.
    * @return JsonObject
-   * @throws SQLException
+   * @throws SQLException The java.sql.SQLException is thrown from java.sql.ResultSet
    */
   public JsonObject toJson(ResultSet resultSet) throws SQLException {
     return toJson(resultSet, false);
@@ -55,10 +55,11 @@ public class JsonResultSet {
    * </code>
    * </pre>
    *
-   * @param resultSet
-   * @param normalizeColumnNames
+   * @param resultSet The java.sql.ResultSet you want to convert.
+   * @param normalizeColumnNames Pass in true if you want your column names normalized, defaulted to
+   *     false when using <em>toJson(ResultSet resultSet)</em> constructor.
    * @return JsonObject
-   * @throws SQLException
+   * @throws SQLException The java.sql.SQLException is thrown from java.sql.ResultSet
    */
   public JsonObject toJson(ResultSet resultSet, boolean normalizeColumnNames) throws SQLException {
 
