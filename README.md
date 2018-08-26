@@ -1,7 +1,7 @@
 # Json ResultSet Mapper
 
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.mattvass/json-resultset-mapper.svg)](http://repo1.maven.org/maven2/io/github/mattvass/json-resultset-mapper/)
-![CircleCI](https://img.shields.io/circleci/project/github/mattvass/json-resultset-mapper.svg)
+[![CircleCI](https://img.shields.io/circleci/project/github/mattvass/json-resultset-mapper.svg)](https://circleci.com/gh/mattvass/json-resultset-mapper)
 
 
 This allows users to simply convert their result set to json. 
